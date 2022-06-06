@@ -107,17 +107,11 @@ static void createMessage(unsigned long value, int protocol, int length, int del
     json_append_member(rcswitch->message, "hex", json_mkstring(tx_data));
 
 }
+
 static inline unsigned int diff(int A, int B) {
   return abs(A - B);
 }
-static void parseCode(void) {
-        for(unsigned int i = 1; i <= numProto; i++) {
-          if (receiveProtocol(i)) {
-            // receive succeeded for protocol i
-            break;
-          }
-        }
-}
+
 bool receiveProtocol(const int p) {
     const rcproto pro = proto[p-1];
 
@@ -167,6 +161,15 @@ void rcswitchInit(void) {
 
 	rcswitch->parseCode=&parseCode;
 	rcswitch->validate=&validate;
+}
+
+static void parseCode(void) {
+        for(unsigned int i = 1; i <= numProto; i++) {
+          if (receiveProtocol(i)) {
+            // receive succeeded for protocol i
+            break;
+          }
+        }
 }
 
 #if defined(MODULE) && !defined(_WIN32)
