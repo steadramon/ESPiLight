@@ -50,3 +50,4 @@ tfaInit();
 tfa2017Init();
 tfa30Init();
 x10Init();
+hs2241ptInit();

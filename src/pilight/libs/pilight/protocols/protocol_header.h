@@ -50,3 +50,4 @@
 #include "433.92/tfa2017.h"
 #include "433.92/tfa30.h"
 #include "433.92/x10.h"
+#include "433.92_local/hs2241pt.h"
