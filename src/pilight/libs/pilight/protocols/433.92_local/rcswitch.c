@@ -141,6 +141,15 @@ bool receiveProtocol(const int p) {
     return true;
 }
 
+static void parseCode(void) {
+        for(unsigned int i = 1; i <= numProto; i++) {
+          if (receiveProtocol(i)) {
+            // receive succeeded for protocol i
+            break;
+          }
+        }
+}
+
 #if !defined(MODULE) && !defined(_WIN32)
 __attribute__((weak))
 #endif
@@ -161,15 +170,6 @@ void rcswitchInit(void) {
 
 	rcswitch->parseCode=&parseCode;
 	rcswitch->validate=&validate;
-}
-
-static void parseCode(void) {
-        for(unsigned int i = 1; i <= numProto; i++) {
-          if (receiveProtocol(i)) {
-            // receive succeeded for protocol i
-            break;
-          }
-        }
 }
 
 #if defined(MODULE) && !defined(_WIN32)
